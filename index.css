@@ -1,0 +1,9 @@
+ul>li>a{
+    text-decoration: none;
+    color: #000000;
+}
+
+ul>li>a label{
+    color:#6495ed;
+    margin-left: 5px;
+}

@@ -1,0 +1,59 @@
+body{
+    padding: 20px;
+}
+h2{
+    margin-top: 50px;
+}
+h4{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.example{
+    color: #F09661;
+}
+.exArea{
+    background-color: #e1e1e1;
+    padding : 15px;
+}
+.identifier{
+    color: #A748FF;
+    margin-right: 5px;
+}
+.number{
+    color: #BA942B;
+}
+.operator{
+    color: #5587ED;
+    margin: 0 10px 0 10px;
+}
+.comment{
+    color: #ABABAB;
+}
+.text{
+    color: #53C14B;
+}
+.function{
+    color: #5587ED;
+}
+table{
+    width: 100%;
+}
+table thead tr td{
+    width : 33%;
+    background-color: #C4DEFF;
+    text-align: center;
+    vertical-align: middle;
+}
+table tbody tr{
+    width : 100%;
+    margin: 0px;
+    border-color: #4374D9;
+    border-width: 2px;
+    border-style: solid;
+}
+table tbody tr td{
+    width : 33%;
+    text-align: left;
+    vertical-align: middle;
+    padding: 3px;
+}
