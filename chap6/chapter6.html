@@ -4,6 +4,7 @@
             6장
         </title>
         <link rel="stylesheet" href="../common/style.css">
+        <script src="./chapter6.js"></script>
     </head>
     <body>
         <h1 class="example">06장. 데이터 타입</h1>
@@ -84,5 +85,59 @@
             그리고 만약 따옴표로 문자열을 감싸지 않는다면 스페이스와 같은 공백 문자도 포함시킬 수 없다. 
         </p>
         <h2 class="example">6.3 템플릿 리터럴</h2>
+        <hr>
+        <p>
+            ES6부터 템플릿 리터럴<sup>template literal</sup>이라고 하는 새로운 문자열 표기법이 도입되었다.<br/>
+            템플릿 리터럴은 멀티라인 문자열<sup>multi-line string</sup>, 표현식 삽입<sup>expression interpolation</sup>, 태그드 템플릿
+            <sup>tagged tamplate</sup>등 편리한 문자열 처리 기능을 제공한다.
+        </p>
+        <p>
+            템플릿 리터럴은 일반 문자열과 비슷해 보이지만 작은따옴표('') 또는 큰따옴표("") 같은 일반적인 따옴표 대힌 백틱(``)을 사용해 표현한다.
+        </p>
+        <h4 class="example">[ 예제 06-08 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>template = <span class="text">`Template literal`</span>;<br/>
+            <span class="example">console</span>.<span class="function">log</span>(template);<i class="comment"> // Template literal</i>
+        </div>
+        <h3>6.3.1 멀티라인 문자열</h3>
+        <div>일반 문자열 내에서는 줄바꿈(개행)이 허용되지 않는다.</div>
+        <h4 class="example"> [ 예제 06-09 ] </h4>
+        <div class="exArea">
+            <span class="identifier">var </span>template = <span class="text">`Template <br/> literal`</span>;<br/>  
+            <i class="comment">// SyntaxError: Invaild or unexpected token</i>
+        </div>
+        <p>
+            따라서 일반 문자열 내에서 줄바꿈 등의 공백을<sup>white space</sup>표현하려면 백슬래시(\)로 시작하는 이스케이프 시퀀스<sup>escape sequence</sup>
+            를 사용해야 한다. <br/>
+        </p>
+        <div>
+            <table>
+                <colgroup>
+                    <col style="width: 30%;">
+                    <col style="width: 70%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            이스케이프 시퀀스
+                        </th>
+                        <th>
+                            의미
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="escapeSequence">
+                </tbody>
+            </table>
+        </div>
+        <p>
+            예를 들어 줄바꿈과 들여쓰기가 적용된 HTML 문자열은 다음과 같이 이스케이프 시퀀스를 사용해 작성한다.
+        </p>
+        <h4 class="example">[ 예제 06-10 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>template = <span class="text">'&lt;ul&gt;<span class="function">\n\t</span>&lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;<span class="function">\n</span>&lt;/ul&gt;'</span>;
+            <br/><br/>
+            console.log(template);
+        </div>
     </body>
 </html>

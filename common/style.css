@@ -4,6 +4,9 @@ body{
 h2{
     margin-top: 50px;
 }
+h3{
+    color:#5587ED;
+}
 h4{
     margin-top: 20px;
     margin-bottom: 5px;
@@ -56,4 +59,9 @@ table tbody tr td{
     text-align: left;
     vertical-align: middle;
     padding: 3px;
+}
+table thead tr th{
+    background-color: #AFE1FF;
+    height: 30px;
+    border: width 1px solid #000000;
 }
