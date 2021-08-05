@@ -139,5 +139,142 @@
             <br/><br/>
             console.log(template);
         </div>
+        <p>
+            출력 결과는 다음과 같다.
+        </p>
+        <div class="exArea">
+            &lt;ul&gt;<br/>
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;<br/>
+            &lt;/ul&gt;
+        </div>
+        <h3>6.3.2 표현식 삽입</h3>
+        <p>
+            문자열은 문자열 연산자 +를 사용해 연결할 수 있다. + 연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작한다. <br/>
+            그 외의 경우는 덧셈 연산자로 사용한다.
+        </p>
+        <h4 class="example">[ 예제 06-12 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>first = <span class="text">'Ung-mo'</span>;<br/>
+            <span class="identifier">var </span>last = <span class="text">'Lee'</span>;<br/><br/>
+            <i class="comment">
+                // ES5 : 문자열 연결
+            </i><br/>
+            <span class="example">console</span>.<span class="function">log</span>(
+                <span class="text">'My name is '</span><span class="operator"> + </span>first<span class="operator"> + </span>' '<span class="operator"> + </span>
+                ' '<span class="operator"> + </span>last<span class="operator"> + </span>'.'); <i class="comment">// My name is Ung-mo Lee</i>
+        </div>
+        <p>
+            템플릿 리터럴 내에서는 표현식 삽입<sup>expression interpolation</sup>을 통해 간단히 문자열을 삽입할 수 있다.
+        </p>
+        <h4 class="example">[ 예제 06-13 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>first = <span class="text">'Ung-mo'</span>;<br/>
+            <span class="identifier">var </span>last = <span class="text">'Lee'</span>;<br/><br/>
+            <i class="comment">
+                // ES6 : 문자열 삽입
+            </i><br/>
+            <span class="example">console</span>.<span class="function">log</span>(
+                <span class="text">`My name is </span>${first} ${last}<span calss="text">.`</span>); <i class="comment">// My name is Ung-mo Lee</i>
+        </div>
+        <p>
+            표현식을 삽입하려면 ${ }으로 표현식을 감싼다. 이때 표현식의 평가 결과가 문자열이 아니더라도 문자열로 타입이 강제로 변환되어 삽입된다.
+        </p>
+        <h4 class="example">[ 예제 06-14 ]</h4>
+        <div class="exArea">
+            <span class="example">console</span>.<span class="function">log</span>( <span class="text">`1 + 2 =</span> ${ 1 + 2 } <span class="text">`</span> );
+            <i class="comment">
+                //  1 + 2 = 3
+            </i>
+        </div>
+        <p>
+            표현식 삽입은 반드시 템플릿 리터럴 내에서 사용해야 한다. 템플릿 리터럴이 아닌 일반 문자열에서의 표현식 삽입은 문자열로 취급된다.
+        </p>
+        <h4 class="example">[ 예제 06-15 ]</h4>
+        <div class="exArea">
+            <span class="example">console</span>.<span class="function">log</span>( <span class="text">`1 + 2 = ${ 1 + 2 } `</span> );
+            <i class="comment">
+                //  1 + 2 = $ { 1 + 2 }
+            </i>
+        </div>
+
+        <!-- 불리언 타입 -->
+        <h2 class="example">6.4 불리언 타입</h2>
+        <hr>
+        <p>
+            불리언 타입의 값은 논리적 참, 거짓을 나타내는 true와 false뿐이다.
+        </p>
+        <h4 class="example">[ 예제 06-16 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>foo = <span class="number">true</span>;<br/>
+            <span class="example">console</span>.<span class="function">log</span>( foo );
+            <i class="comment">
+                // true
+            </i><br/><br/>
+            <span class="identifier">var </span>foo = <span class="number">false</span>;<br/>
+            <span class="example">console</span>.<span class="function">log</span>( foo );
+            <i class="comment">
+                // false
+            </i>
+        </div>
+
+        <!-- undefined 타입 -->
+        <h2 class="example">6.5 undefined 타입</h2>
+        <p>
+            undefined 타입의 값은 undefined가 유일하다.
+            var 키워드로 선언한 변수는 암묵적으로 undefined로 초기화된다. 다시 말해, 변수 선언에 의해 확보된 메모리 공간을 처음할당이 이루어질 때까지
+            빈 상태(대부분 비어 있지 않고 쓰레기 값<sup>garbage value</sup>이 들어 있다)로 내버려두지 않고 자바스크립트 엔진이 undefined로 초기화한다.
+        </p>
+        <h4 class="example">[ 예제 06-17 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>foo;
+            <span class="example">console</span>.<span class="function">log</span>( foo );
+            <i class="comment">
+                // undefined
+            </i>
+        </div>
+
+        <!-- null타입-->
+        <h2 class="example">6.6 null타입</h2>
+        <hr>
+        <p>
+            null 타입의 값은 null이 유일하다. 자바스크립트는 대소문자를 구별하므로 null은 Null, NULL등과 다르다. <br/>
+            프로그래밍 언어에서 null은 변수에 값이 없다는 것을 의도적으로 명시(의도적 부재 <sup>intentional absence</sup>)할 때 사용한다.
+            변수에 null을 할당하는 것은 변수가 이전에 참조하던 값을 더 이상 참조하지 않겠다는 의미다. 이는 이전에 할당되어 있던 값에 대한 참조를 
+            명시적으로 제거하는 것을 의미하며, 자바스크립트 엔진은 누구도 참조하지 않는 메모리 공간에 대해 가비지 콜렉션을 수행할 것이다.
+        </p>
+        <h4>[ 예제 06-18 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>foo = <span class="text">'Lee'</span>;<br/><br/>
+            <i class="comment">
+                // 이전 참조를 제거. foo 변수는 더 이상 'Lee'를 참조하지 않는다. <br/>
+                // 유용해 보이지는 않는다. 변수의 스코프를 좁게 만들어 변수 자체를 재빨리 소멸시키는 편이 낫다.
+            </i><br/>
+            foo = <span class="number">null</span>;
+        </div>
+
+        <!-- 심벌 타입 -->
+        <h2 class="example">6.7 심벌 타입</h2>
+        <hr>
+        <p>
+            심벌<sup>symbol</sup>은 ES6에서 추가된 7번째 타입으로, 변경 불가능한 원시 타입의 값이다. 심벌 값은 다른값과 중복되지 않는 유일무이 한 값이다.
+            따라서 주로 이름이 충돌할 위험이 없는 객체의 유일한 프로퍼티 키를 만들기 위해 사용한다. 심벌 이외의 원시 값은 리터럴을 통해 생성하지만 심벌은 Symbol 함수를
+            호출해 생성한다. 이때 생성된 심벌값은 외부에 노출되지 않으며, 다른 값과 절대 중복되지 않는 유일무이한 값이다.
+        </p>
+        <h4 class="example">[ 예제 06-20 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>key = <span class="example">Symbol</span>( <span class="text">'key'</span> ); <br/>
+            <span class="example">console</span>.<span class="function">log</span>( <span class="function">typeof</span> key);
+            <i class="comment">
+                // symbol
+            </i><br/><br/>
+            <i class="comment">
+                // 객체 생성
+            </i><br/>
+            <span class="identifier">var </span>obj = {};<br/><br/>
+            <i>
+                // 이름이 충돌할 위험이 없는 유일무이한 값인 심벌을 프로퍼티 키로 사용한다.
+            </i><br/>
+            obj[key] = <span class="text">'value'</span>
+        </div>
     </body>
 </html>
