@@ -202,5 +202,101 @@
             <span class="text">'Cat'</span> && <span class="text">false</span>  <i>// -> false</i><br/>
             <br/>
         </div>
+        <p>
+            단축 평가를 사용하면 if문을 대체할 수 있다. 어떤 조건이 Truthy 값일때 무언가를 해야한다면 논리곱 연산자 표현식으로 if문을 대체할 수 있다.
+        </p>
+        <h4 class="example">[ 예제 09-20 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>done<span class="operator">=</span><span class="number">true</span> ;<br/>
+            <span class="identifier">var </span>message<span class="operator">=</span><span class="text">' '</span> ;<br/><br/>
+            <i class="comment">
+                // 주어진 조건이 true일때
+            </i><br/>
+            <span class="identifier">if</span>( done ) message = <span class="text">'완료'</span>;<br/><br/>
+            <i class="comment">
+                // if 문은 단축 평가로 대체 가능하다.
+            </i><br/>
+            <i class="comment">
+                // done이 true라면 message에 '완료'를 할당
+            </i><br/>
+            message = done && <span class="text">'완료'</span>;<br/>
+            <span class="example">console</span>.<span class="function">log</span>(message);
+            <i class="comment">
+                // 완료
+            </i>
+        </div>
+        <p>
+            조건이 Falsy 값(거짓으로 평가되는 값)일 때 무언가를 해야한다면 논리합(||) 연산자 표현식으로 if 문을 대체할 수 있다.
+        </p>
+        <h4 class="example">[ 예제 09-21 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>done<span class="operator">=</span><span class="number">false</span> ;<br/>
+            <span class="identifier">var </span>message<span class="operator">=</span><span class="text">' '</span> ;<br/><br/>
+            <i class="comment">
+                // 주어진 조건이 false일때
+            </i><br/>
+            <span class="identifier">if</span>( !done ) message = <span class="text">'미완료'</span>;<br/><br/>
+            <i class="comment">
+                // if 문은 단축 평가로 대체 가능하다.
+            </i><br/>
+            <i class="comment">
+                // done이 false라면 message에 '미완료'를 할당
+            </i><br/>
+            message = done || <span class="text">'미완료'</span>;<br/>
+            <span class="example">console</span>.<span class="function">log</span>(message);
+            <i class="comment">
+                // 미완료
+            </i>
+        </div>
+        <p>
+            단축 평가는 다음과 같은 상황에서 유용하게 사용된다. 아직 살펴보지 않는 객체와 함수에 대한 내용이 나와서 혼란스러울 수 있겠지만 지금은 다음과 같은 
+            단축 평가의 유용한 패턴이 있다는 정도로 이해하고 넘어가도 좋다.
+            <br/><br/>
+            <b class="text">객체를 가리키기를 기대하는 변수가 null 또는 undefined가 아닌지 확인하고 프로퍼티를 참조할 때</b><br/>
+            객체는 키<sup>key</sup>와 값<sup>value</sup>으로 구성된 프로퍼티<sup>property</sup>의 집합이다. 만약 객체를 가리키기를 기대하는 변수의 값이
+            객체가 아니라 null 또는 undefined인 경우 객체의 프로퍼티를 참조하면 타입 에러<sup>TypeError</sup>가 발생한다. 에러가 발생하면 프로그램이 강제 종료한다.
+        </p>
+        <h4 class="example">[ 예제 09-23 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>elem<span class="operator">= </span><span class="number">null</span> ;<br/>
+            <span class="identifier">var </span>value<span class="operator">= elem.</span><span class="example">value</span> ;
+            <i class="comment">// TypeError : Cannot read property 'value' of null</i>
+        </div>
+        <p>
+            이때 단축 평가를 사용하면 에러를 발생시키지 않는다.
+        </p>
+        <h4 class="example">[ 예제 09-24 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>elem<span class="operator">= </span><span class="number">null</span> ;<br/>
+            <i class="comment">// elem이 null이나 undefined와 같은 Falsy 값이면 elem으로 평가되고</i><br/>
+            <i class="comment">// elem이 Truthy 값이면 elem.value로 평가된다.</i><br/>
+            <span class="identifier">var </span>value<span class="operator">= elem && elem.</span><span class="example">value</span> ;
+            <i class="comment">// -> null</i>
+        </div>
+        <h3>9.4.2 옵셔널 체이닝 연산자</h3>
+        <p>
+            ES11(ECMAScript2020)에서 도입된 옵셔널 체이닝<sup>optional chaining</sup> 연산자 ?.는 좌항의 피연산자가 null 또는 undefined인 경우
+            undefined를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.
+        </p>
+        <h4 class="example">[ 예제 09-26 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>elem<span class="operator">=</span><span class="number">null</span> ;<br/>
+            <i class="comment">// elem이 null 또는 undefined이면 undefined를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.</i><br/>
+            <span class="identifier">var </span>value<span class="operator">=</span>elem?.<span class="example">value</span> ;<br/>
+            <span class="example">console</span>.<span class="function">log</span>(value);<i class="comment">// undefined</i>
+        </div>
+        <p>
+            옵셔널 체이닝 연산자 ?.는 객체를 가리키기를 기대하는 변수가 null 또는 undefined가 아닌지 확인하고 프로퍼티를 참조할 때 유용하다.
+            옴셔널 체이닝 연산자 ?.가 도입되기 이전에는 논리 연산자 &&를 사용한 단축 평가를 통해 변수가 null 또는 undefined인지 확인했다.
+        </p>
+        <h4 class="example">[ 예제 09-27 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var </span>elem<span class="operator">=</span><span class="number">null</span> ;<br/><br/>
+            <i class="comment">
+                // elem이 Falsy 값이면 elem으로 평가되고, elem이 Truthy 값이면 elem.value로 평가된다.
+            </i><br/>
+            <span class="identifier">var</span>value<span class="operator">=</span>elem && elem.<span class="example">value</span> ;<br/>
+            <span class="example">console</span>.<span class="function">log</span>(value);<i class="comment">// null</i>
+        </div>
     </body>
 </html>
