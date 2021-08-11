@@ -1,0 +1,33 @@
+.placePicture{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.pictureFont{
+    font-size: 30px;
+}
+
+.dashedBorder{
+    border-style: dashed;
+    border-width: 2px;
+    border-color:black;
+    min-width: 200px;
+}
+
+.pictureComment{
+    font-size:12px;
+}
+
+ul {
+    padding-left : 35px;
+}
+
+ul li {
+    list-style-type: square;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size:10px;
+}

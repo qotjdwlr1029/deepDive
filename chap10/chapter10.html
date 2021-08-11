@@ -4,6 +4,7 @@
             10장
         </title>
         <link rel="stylesheet" href="../common/style.css">
+        <link rel="stylesheet" href="../style/chap10.css">
     </head>
     <body>
         <h1 class="example">10장 객체 리터럴</h1>
@@ -11,5 +12,81 @@
         <br/>
         <h2 class="example">10.1 객체란?</h2>
         <hr>
+        <p>
+            자바스크립트는 객체<sup>object</sup> 기반의 프로그래밍 언어이며, 자바스크립트를 구성하는 거의 "모든 것"이 객체다. 원시 값을 제외한
+            나머지 값(함수, 배열, 정규 표현식)은 모두 객체다.
+            <br>
+            원시 타입은 단 하나의 값만 나타내지만 객체 타입<sup>object/reference type</sup>은 다양한 타입의 값(원시 값 또는 다른 객체)을 하나의 단위로 구성한
+            복합적인 자료구조<sup>data structure</sup>다. 또한 <b>원시 타입의 값, 즉 원시 값은 변경 불가능한 값<sup>immutable value</sup>이지만 객체 타입의 값,
+            즉 객체는 변경 가능한 값<sup>mutable value</sup></b>이다.
+        </p>
+        <p>
+            객체는 0개 이상의 프로퍼티로 구성된 집합이며, 프로퍼티는 키<sup>key</sup>와 값<sup>value</sup>으로 구성된다.
+        </p>
+        <div class="placePicture">
+            <span class="pictureFont">
+                <span class="identifier">var</span> person = {<br>
+                    <div class="dashedBorder" style="margin: 3px;">name : <span class="text">'Lee'</span>,</div>
+                    <div class="dashedBorder" style="margin: 3px;">age : <span class="number">20</span>   </div>
+                };
+            </span>
+            <div class="pictureComment">
+                <span class="pictureTitle">그림 10-1</span> 객체는 프로퍼티의 집합이다.
+            </div>
+        </div>
+        <p>
+            ※ 점선으로 되어있는 영역의 쌍을 프로퍼티라고 하고, 각 프로퍼티의 왼쪽 값은 키, 오른쪽 값은 값이라고 한다.
+        </p>
+        <p>
+            자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값이 될 수 있다. 자바스크립트의 함수는 일급 객체이므로 값으로 취급할 수 있다.
+            따라서 함수도 프로퍼티 값으로 사용할 수 있다. 프로퍼티 값이 함수 일 경우, 일반 함수와 구분하기 위해 메서드<sup>method</sup>라 부른다.
+        </p>
+        <div class="placePicture">
+            <span class="pictureFont">
+                <span class="identifier">var</span> counter = {<br>
+                    <div class="dashedBorder" style="margin: 10px;">num : <span class="number">0</span>,</div>
+                    <div class="dashedBorder" style="margin: 10px;"><span class="function">increase : </span><span class="identifier">function</span> () {<br/>
+                        <span class="example">this</span>.<span class="example">num</span>++ ;<br/>
+                    }</div>
+                };
+            </span>
+            <div class="pictureComment">
+                <span class="pictureTitle">그림 10-2</span> 객체의 프로퍼티와 메서드
+            </div>
+        </div>
+        <p>
+            ※ 점선으로 되어있는 영역 중 위쪽은 프로퍼티이고, 아랫쪽은 메서드이다.
+        </p>
+        <p>
+            이처럼 객체는 프로퍼티와 메서드로 구성된 집합체다. 프로퍼티와 메서드의 역할은 다음과 같다.
+        </p>
+        <ul>
+            <li><b>프로퍼티</b>: 객체의 상태를 나타내는 값</li>
+            <li><b>메서드</b>: 프로퍼티(상태 데이터)를 참조하고 조작할 수 있는 동작(behavior)</li>
+        </ul>
+        <h2 class="example">10.2 객체 리터럴에 의한 객체 생성</h2>
+        <hr>
+        <p>
+            C++나 자바 같은 클래스 기반 객체지향 언어는 클래스를 사전에 정의하고 필요한 시점에 new 연산자와 함께 생성자<sup>constructor</sup>
+            를 호출하여 인스턴스를 생성하는 방식으로 객체를 생성한다.<br/>
+            자바스크립트는 프로토타입 기반 객체지향 언어로서 클래스 기반 객체지향 언어와는 달리 다양한 객체 생성 방법을 지원한다.
+        </p>
+        <ul>
+            <li>객체 리터럴</li>
+            <li>Object 생성자 함수</li>
+            <li>생성자 함수</li>
+            <li>Object.create 메서드</li>
+            <li>클래스(ES6)</li>
+        </ul>
+        <p>
+            이러한 객체 생성 방법 중에서 가장 일반적이고 간단한 방법은 객체 리터럴을 사용하는 방법이다. 5.2절 "리터럴"에서 살펴보았듯이 리터럴<sup>literal</sup>
+            은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용하여 값을 생성하는 표기법을 말한다. 객체 리터럴은 객체를 생성하기 위한 표기법이다.
+            <br>
+            객체 리터럴은 중괄호({...}) 내에 0개 이상의 프로퍼티를 정의한다. 변수에 할당되는 시점에 자바스크립트 엔진은 객체 리터럴을 해석해 객체를 생성한다.
+        </p>
+        <h4 class="example">[ 예제 10-01 ]</h4>
+        <div class="exArea">
+            
+        </div>
     </body>
 </html>
