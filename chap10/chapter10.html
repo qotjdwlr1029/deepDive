@@ -186,5 +186,143 @@
             };<br/><br/>
             <span class="example">console</span>.<span class="function">log</span>(foo); <i class="comment">// {"" : ""}</i>
         </div>
+        <p>
+            프로퍼티 키에 문자열이나 심벌 값 외의 값을 사용하면 암묵적 타입 변환을 통해 문자열이 된다. 예를 들어, 프로퍼티 키로 숫자 리터럴을 시용하면
+            따옴표는 붙지 않지만 내부적으로는 문자열로 변환된다.
+        </p>
+        <h4 class="example">[ 예제 10-08 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> foo = {<br/>
+            &nbsp;<span class="number">0</span>: <span class="number">1</span>,<br/>
+            &nbsp;<span class="number">1</span>: <span class="number">2</span>,<br/>
+            &nbsp;<span class="number">2</span>: <span class="number">3</span><br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(foo); <i class="comment">// {0 : 1, 1 : 2, 2 : 3}</i>
+        </div>
+        <p>
+            var, function과 같은 예약어를 프로퍼티 키로 사용해도 에러가 발생하지 않는다. 하지만 예상치 못한 에러가 발생할 여지가 있으므로 권장하지 않는다.
+        </p>
+        <h4 class="example">[ 예제 10-09 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> foo = {<br/>
+                &nbsp;<span class="example">var</span>: <span class="text">' '</span>,<br/>
+                &nbsp;<span class="example">function</span>: <span class="text">' '</span><br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(foo); <i class="comment">// {var : "", function : ""}</i>
+        </div>
+        <p>
+            이미 존재하는 프로퍼티 키를 중복 선언하면 나중에 선언한 프로퍼티가 먼저 선언판 프로퍼티를 덮어쓴다. 이때 에러가 발생하지 않는다는 점에 주의하자.
+        </p>
+        <h4 class="example">[ 예제 10-10 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> foo = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span>,<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Kim'</span><br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(foo); <i class="comment">// {name : "Kim"}</i>
+        </div>
+
+        <!-- 메서드 -->
+        <h2 class="example">10.4 메서드</h2>
+        <hr>
+        <p>
+            자바스크립트에서 사용할 수 있는 모든 값은 프로퍼티 값으로 사용할 수 있다고 했다. 아직 살펴보지 않았지만 자바스크립트의 함수는 객체(일급 객체)다.
+            따라서 함수는 값으로 취급할 수 있기 때문에 프로퍼티 값으로 사용할 수 있다. <br/>
+            프로퍼티 값이 함수일 경우 일반 함수와 구분하기 위해 메서드<sup>method</sup>라 부른다. 즉, 메서드는 객체에 묶여 있는 함수를 의미한다.
+        </p>
+        <h4 class="example">[ 예제 10-11 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> circle = {<br/>
+                &nbsp;<span class="example">radius</span>: <span class="number">5</span>, <i class="comment">// &lt;- 프로퍼티</i><br/><br/>
+                &nbsp;<i class="comment">// 원의 지름</i><br/>
+                &nbsp;<span class="function">getDiameter:</span> <span class="identifier">function</span> () { <i class="comment">// &lt;- 메서드</i><br/>
+                &nbsp;&nbsp;<span class="identifier">return</span> <span class="number">2</span> * <span class="example">this</span>.<span class="example">radius</span>;
+                <i class="comment">// this는 circle을 가리킨다.</i><br/>
+                &nbsp;} <br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(circle.<span class="function">getDiameter</span>());<i class="comment">// 10</i>
+        </div>
+
+        <!-- 프로퍼티 접근 -->
+        <h2 class="example">10.5 프로퍼티 접근</h2>
+        <hr>
+        <p>
+            프로퍼티에 접근하는 방법은 다음과 같이 두 가지다.
+            <ul>
+                <li>마침표 프로퍼티 접근 연산자(.)를 사용하는 <b>마침표 표기법</b><sup>dot notation</sup></li>
+                <li>대괄호 프로퍼티 접근 연산자([...])를 사용하는 <b>대괄호 표기법</b><sup>bracket notation</sup></li>
+            </ul>
+            프로퍼티 키가 식별자 네이밍 규칙을 준수하는 이름, 즉 자바스크립트에서 사용 가능한 유효한 이름이면 마침표 표기법과 대괄호 표기법을 모두 사용할 수 있다. <br/>
+            마침표 프로퍼티 접근 연산자 또는 대괄호 프로퍼티 접근 연산자의 좌측에는 객체로 평가되는 표현식을 기술한다. 마침표 프로퍼티 접근 연산자의 우측 또는 대괄호
+            프로퍼티 접근 연산자의 내부에는 프로퍼티 키를 지정한다.
+        </p>
+        <h4 class="example">[ 예제 10-12 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <i class="comment">// 마침표 표기법에 의한 프로퍼티 접근</i><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person.<span class="example">name</span>); <i class="comment">// Lee</i><br/><br/>
+            <i class="comment">// 마침표 표기법에 의한 프로퍼티 접근</i><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person.[ <span class="text">'name'</span> ]); <i class="comment">// Lee</i>
+        </div>
+        <p>
+            대괄호 표기법을 사용하는 경우 <b>대괄호 프로퍼티 접근 연산자 내부에 지정하는 프로퍼티 키는 반드시 따옴표로 감싼 문자열</b>이어야 한다. 대괄호
+            프로퍼티 접근 연산자 내에 따옴표로 감싸지 않은 이름을 프로퍼티 키로 사용하면 자바스크립트 엔진은 식별자로 해석한다.
+        </p>
+        <h4 class="example">[ 예제 10-13 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person.[name]); <i class="comment">// ReferenceError: name is not defined</i>
+        </div>
+        <p>
+            위 예제에서 ReferenceError가 발생한 이유는 대괄호 연산자 내의 따옴표로 감싸지 않은 이름, 즉 식별자 name을 평가하기 위해 선언된 name을 찾았지만 찾지 못했기 때문이다.<br/>
+            <b>객체에 존재하지 않는 프로퍼티에 접근하면 undefined 를 반환한다.</b> 이때 ReferenceError가 발생하지 않는데 주의하자.
+        </p>
+        <h4 class="example">[ 예제 10-14 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person.<span class="example">age</span>); <i class="comment">// undefined</i>
+        </div>
+        <p>
+            프로퍼티 키가 식별자 네이밍 규칙을 준수하지 않는 이름, 즉 자바스크립트에서 사용 가능한 유효한 이름이 아니면 반드시 대괄호 표기법을 사용해야 한다. 단,
+            프로퍼티 키가 숫자로 이뤄진 문자열인 경우 따옴표를 생략할 수 있다. 그 외의 경우 대괄호 내에 들어가는 프로퍼티 키는 반드시 따옴표로 감싼 문자열이어야 한다는 점을
+            잊지 말자.
+        </p>
+        
+        <!-- 프로퍼티 값 갱신 -->
+        <h2 class="example">10.6 프로퍼티 값 갱신</h2>
+        <hr>
+        <p>
+            이미 존재하는 프로퍼티에 값을 할당하면 프로퍼티 값이 갱신된다.
+        </p>
+        <h4 class="example">[ 예제 10-16 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <i class="comment">// person 객체에 name 프로퍼티가 존재하므로 name 프로퍼티의 값이 갱신된다.</i><br/>
+            person.<span class="example">name</span> = <span class="text">'kim'</span>;<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person);  <i class="comment">// {name : "kim"}</i>
+        </div>
+
+        <!-- 프로퍼티 동적 생성 -->
+        <h2 class="example">10.7 프로퍼티 동적 생성</h2>
+        <hr>
+        <p>
+            존재하지 않는 프로퍼티에 값을 할당하면 프로퍼티가 동적으로 생성되어 추가되고 프로퍼티 값이 할당된다.
+        </p>
+        <h4 class="example">[ 예제 10-17 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span> person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <i class="comment">// person 객체에는 age 프로퍼티가 존재하지 않는다.</i><br/>
+            <i class="comment">// 따라서 person 객체에 age 프로퍼티가 동적으로 생성되고 값이 할당된다.</i>
+        </div>
     </body>
 </html>
