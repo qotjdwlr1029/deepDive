@@ -323,6 +323,133 @@
             };<br/><br/>
             <i class="comment">// person 객체에는 age 프로퍼티가 존재하지 않는다.</i><br/>
             <i class="comment">// 따라서 person 객체에 age 프로퍼티가 동적으로 생성되고 값이 할당된다.</i>
+            person.<span class="example">age</span> = <span class="number">20</span> ;<br/><br/>
+
+            <span class="example">console</span>.<span class="function">log</span>(person); <i class="comment">// {name : "Lee", age : 20}</i>
+        </div>
+
+        <!-- 프로퍼티 삭제 -->
+        <h2 class="example">10.8 프로퍼티 삭제</h2>
+        <hr>
+        <p>
+            delete 연산자는 객체의 프로퍼티를 삭제한다. 이때 delete 연산자의 피연산자는 프로퍼티 값에 접근할 수 있는 표현식이어야 한다. 만약
+            존재하지 않는 프로퍼티를 삭제하면 아무런 에러 없이 무시된다.
+        </p>
+        <h4 class="example">[ 예제 09-18 ]</h4>
+        <div class="exArea">
+            <span class="identifier">var</span>person = {<br/>
+                &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span><br/>
+            };<br/><br/>
+            <i class="example"> // 프로퍼티 동적 생성</i><br/>
+            person.<span class="example">age</span> = <span class="number">20</span> ;<br/><br/>
+            <i class="comment">// person 객체에 age 프로퍼티가 존재한다.</i><br/>
+            <i class="comment">// 따라서 delete 연산자로 age 프로퍼티를 삭제할 수 있다.</i><br/>
+            delete person.<span class="example">age</span>;<br/><br/>
+            <i class="comment">// person 객체에 address 프로퍼티가 존재하지 않는다.</i><br/>
+            <i class="comment">// 따라서 delete 연산자로 address 프로퍼티를 삭제할 수 없다. 이때 에러가 발생하지 않는다.</i><br/>
+            delete person.<span class="example">address</span>;<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(person); <i class="comment">// {name : "Lee"}</i>
+        </div>
+
+        <!-- ES6에서 추가된 객체 리터럴의 확장 기능 -->
+        <h2 class="example">10.9 ES6에서 추가된 객체 리터럴의 확장 기능</h2>
+        <hr>
+        <p>
+            ES6에서는 더욱 간편하고 표현력 있는 객체 리터럴의 확장 기능을 제공한다.
+        </p>
+        <h3>10.9.1 프로퍼티 축약 표현</h3>
+        <p>
+            객체 리터럴의 프로퍼티는 프로퍼티 키와 프로퍼티 값으로 구성된다. 프로퍼티 값은 변수에 할당된 값, 즉 식별자 표현식일 수도 있다.
+        </p>
+        <h4 class="example">[ 예제 10-19 ]</h4>
+        <div class="exArea">
+            <i class="comment">// ES5</i><br/>
+            <span class="identifier">var</span> x = <span class="number">1</span>, y = <span class="number">2</span> ;<br/><br/>
+            <span class="identifier">var</span>obj = {<br/>
+                &nbsp;<span class="example">x</span>: x ,<br/>
+                &nbsp;<span class="example">y</span>: y <br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(obj); <i class="comment">// {x : 1, y : 2}</i>
+        </div>
+        <p>
+            ES6에서는 프로퍼티 값으로 변수를 사용하는 경우 변수 이름과 프로퍼티 키가 동일한 이름일 때 프로퍼티 키를 생략<sup>property shorthand</sup>
+            할 수 있다. 이때 프로퍼티 키는 변수 이름으로 자동 생성된다.
+        </p>
+        <h4 class="example">[ 예제 10-20 ]</h4>
+        <div class="exArea">
+            <i class="comment">// ES6</i><br/>
+            <span class="identifier">let</span> x = <span class="number">1</span>, y = <span class="number">2</span> ;<br/><br/>
+            <i class="comment">// 프로퍼티 축약 표현</i><br/>
+            <span class="identifier">const</span>obj = { x, y };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(obj); <i class="comment">// {x : 1, y : 2}</i>
+        </div>
+        <h3>10.9.2 계산된 프로퍼티 이름</h3>
+        <p>
+            문자열 또는 문자열로 타입 변환할 수 있는 값으로 평가되는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도 있다. 단, 프로퍼티
+            키로 사용할 표현식을 대괄호([...])로 묶어야 한다. 이를 계산된 프로퍼티 이름<sup>computed property name</sup>이라 한다.
+        </p>
+        <h4 class="example">[ 예제 10-21 ]</h4>
+        <div class="exArea">
+            <i class="comment">//ES5</i><br/>
+            <span class="identifier">var</span>prefix = <span class="text">'prop'</span>;<br/>
+            <span class="identifier">var</span>i = <span class="number">0</span>; <br/><br/>
+            <span class="identifier">var</span>obj = { }; <br/><br/>
+            <i class="comment">// 계산된 프로퍼티 이름으로 프로퍼티 키 동적 생성</i><br/>
+            obj[prefix + <span class="text">'-'</span> + ++i] = i;<br/>
+            obj[prefix + <span class="text">'-'</span> + ++i] = i;<br/>
+            obj[prefix + <span class="text">'-'</span> + ++i] = i;<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(obj); 
+            <i class="comment">// {prop-1 : 1, prop-2 : 2, prop-3 : 3}</i>
+        </div>
+        <p>
+            ES6에서는 객체 리터럴 내부에서도 계산된 프로퍼티 이름으로 프로퍼티 키를 동적으로 생성할 수 있다.
+        </p>
+        <h4 class="example">[ 예제 10-22 ]</h4>
+        <div class="exArea">
+            <i class="comment">//ES6</i><br/>
+            <span class="identifier">const</span>prefix = <span class="text">'prop'</span>;<br/>
+            <span class="identifier">let</span>i = <span class="number">0</span>; <br/><br/>
+            <i class="comment">// 객체 리터럴 내부에서 계산된 프로퍼티 이름으로 프로퍼티 키를 동적 생성</i><br/>
+            <span class="identifier">var</span>obj = {<br/>
+                &nbsp;[<span class="text">`</span>${ prefix }<span class="text"> - </span>${ ++i }<span class="text">`</span>]: i,<br/>
+                &nbsp;[<span class="text">`</span>${ prefix }<span class="text"> - </span>${ ++i }<span class="text">`</span>]: i,<br/>
+                &nbsp;[<span class="text">`</span>${ prefix }<span class="text"> - </span>${ ++i }<span class="text">`</span>]: i<br/>
+            };<br/><br/>
+            <span class="example">console</span>.<span class="function">log</span>(obj); 
+            <i class="comment">// {prop-1 : 1, prop-2 : 2, prop-3 : 3}</i>
+        </div>
+        <h3>10.9.3 메서드 축약 표현</h3>
+        <p>
+            ES5에서 메서드를 정의하려면 프로퍼티 값으로 함수를 할당한다.
+        </p>
+        <h4 class="example">[ 예제 10-23 ]</h4>
+        <div class="exArea">
+            <i class="comment">//ES5</i><br/>
+            <span class="identifier">var</span>person = { <br/>
+            &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span>, <br/>
+            &nbsp;<span class="function">sayHi</span>: <span class="identifier">function</span>() { <br/>
+            &nbsp;&nbsp;<span class="example">console</span>.<span class="function">log</span>( <span class="text">'Hi! '</span>
+                + <span class="example">this.name</span>);<br/>
+            &nbsp;} <br/>
+            };
+            <br/><br/>
+            obj.<span class="function">sayHi</span>() <i class="comment">// Hi! Lee</i>
+        </div>
+        <p>
+            ES6에서는 메서드를 정의할 떄 function 키워드를 생략한 축약 표현을 사용할 수 있다.
+        </p>
+        <h4 class="example">[ 예제 10-24 ]</h4>
+        <div class="exArea">
+            <i class="comment">//ES6</i><br/>
+            <span class="identifier">var</span>person = { <br/>
+            &nbsp;<span class="example">name</span>: <span class="text">'Lee'</span>, <br/>
+            &nbsp;<span class="function">sayHi</span>() { <br/>
+            &nbsp;&nbsp;<span class="example">console</span>.<span class="function">log</span>( <span class="text">'Hi! '</span>
+                + <span class="example">this.name</span>);<br/>
+            &nbsp;} <br/>
+            };
+            <br/><br/>
+            obj.<span class="function">sayHi</span>() <i class="comment">// Hi! Lee</i>
         </div>
     </body>
 </html>
