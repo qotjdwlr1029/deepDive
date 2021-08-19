@@ -7,3 +7,11 @@ ul li {
     padding-top: 3px;
     padding-bottom: 3px;
 }
+
+ol li {
+    font-size:small;
+    color:cornflowerblue;
+}
+ol li div{
+    color: black;
+}
