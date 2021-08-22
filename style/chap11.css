@@ -15,3 +15,35 @@ ol li {
 ol li div{
     color: black;
 }
+
+.solidBorder{
+    border-style: solid;
+    border-width: 2px;
+    border-color:black;
+    min-width: 200px;
+}
+
+.placeCenter{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.memoryCell{
+    height : 30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sFont{
+    font-size:small;
+    padding:3px;
+}
