@@ -1,0 +1,10 @@
+.placeCenter{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sFont{
+    font-size:small;
+    padding:3px;
+}

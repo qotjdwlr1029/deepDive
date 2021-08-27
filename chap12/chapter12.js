@@ -22,7 +22,26 @@ var functionInfo = [
             '함수 몸체는 참수 호출에 의해 실행된다.'
         ]
     }
-]
+];
+
+var functionDefine = [
+    { 
+        subject : '함수 선언문'
+        , content : 'function add(x, y){ return x + y; }'
+    },
+    { 
+        subject : '함수 표현식'
+        , content : 'var add = function (x, y){ return x + y; }'
+    },
+    { 
+        subject : 'Function 생성자 함수'
+        , content : 'var add = new function ("x", "y", "return x + y");'
+    },
+    { 
+        subject : '화살표 함수(ES6)'
+        , content : 'var add = (x, y) => x + y;'
+    }
+];
 
 window.onload = function(){
 
@@ -35,13 +54,14 @@ window.onload = function(){
         var subject = document.createElement('td');
         var contentDiv = document.createElement('td');
         var list = document.createElement('ul');
-
+        
         var contents = functionInfo[i].content;
 
-        for( var j = 0; j < contents.length ;j++ ){
+        for( var j = 0; j < contents.length ; j++ ){
             var li = document.createElement('li');
             list.appendChild(li);
-            li.textContent = contents[i];
+            li.textContent = contents[j];
+            li.style.listStyleType = 'square';
         }
 
         subject.textContent = functionInfo[i].subject;
@@ -53,9 +73,21 @@ window.onload = function(){
         tbody.appendChild(tr);
     }
 
+    var funcDefineTab = document.getElementById('functionDefine');
+    var defineTabTbody = funcDefineTab.children[2];
 
-    console.log(tbody);
+    for(var i = 0; i < functionDefine.length; i++ ){
 
-    console.log(tbody.textContent);
+        var tr = document.createElement('tr');
+        var title = document.createElement('td');
+        var content = document.createElement('td');
 
+        defineTabTbody.appendChild(tr);
+        tr.appendChild(title);
+        tr.appendChild(content);
+        title.textContent = functionDefine[i].subject;
+        content.textContent = functionDefine[i].content;
+        //td.style.textAlign = 'center';
+
+    }
 }
