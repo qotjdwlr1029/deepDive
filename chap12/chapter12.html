@@ -202,7 +202,21 @@
             문맥(예를 들어, 할당 연산자의 우변)에서 피연산자로 사용되면 자바스크립트 엔진은 { }을 객체 리터럴로 해석한다. 이처럼 동일한 코드도 코드의 문맥에 따라 해석이 달라질 수 있다. <br/><br/>
             기명 함수 리터럴도 중의적인 코드다. 따라서 코드의 문맥에 따라 해석이 달라질 수 있다. 자바스크립트 엔진은 함수 이름이 있는 함수 리터럴을 단독으로 사용(값으로 평가되어야 하는
             문맥에서 함수 리터럴을 사용하지 않는 경우, 다시 말해 함수 리터럴을 피연산자로 사용하지 않는 경우)하면 함수 선언문으로 해석하고, 함수 리터럴이 값으로
-            평가되어야 하는 문맥, 예를
+            평가되어야 하는 문맥, 예를 들어 함수 리터럴을 변수에 할당하거나 피연산자로 사용하면 함수 리터럴 표현식으로 해석한다. 이때 함수 선언문이든 함수 리터럴 표현식이든
+            함수가 생성되는 것은 동일하다. 하지만 함수를 생성하는 내부 동작에 차이가 있다. 다음 예제를 살펴보자.
         </p>
+        <h4 class="example">[ 예제 12-08 ]</h4>
+        <div class="exArea">
+            <i class="comment">// 기명 함수 리터럴을 단독으로 사용하면 함수 선언문으로 해석된다.</i><br/>
+            <i class="comment">// 함수 선언문에서는 함수 이름을 생략할 수 없다.</i><br/>
+            <span class="identifier">function</span><span class="identifier">foo</span>() {
+            <span class="example">console</span>.<span class="function">log</span>( <span class="text">'foo'</span> ); } <br/>
+            <span class="function">foo</span>() ; <i class="comment">// foo</i><br/><br/>
+            <i class="comment">// 함수 리터럴을 피연산자로 사용하면 함수 선언문이 아니라 함수 리터럴 표현식으로 해석된다.</i><br/>
+            <i class="comment">// 함수 리터럴에서는 함수 이름을 생략할 수 있다.</i><br/>
+            ( <span class="identifier">function</span><span class="identifier">bar</span>() {
+            <span class="example">console</span>.<span class="function">log</span>( <span class="text">'bar'</span> ); } );<br/>
+            <span class="function">bar</span>(); <i class="comment">// ReferenceError: bar is not defined</i><br/>
+        </div>
     </body>
 </html>
