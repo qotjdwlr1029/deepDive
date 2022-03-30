@@ -12,13 +12,11 @@
             const x = 1;
             const y = 2;
 
-            //일반적으로 클로저라고 하지 않는다.
+            // 클로저
+            // 중첩 함수 bar는 외부 함수보다 더 오래 유지되며 상위 스코프의 식별자를 참조한다.
             function bar(){
-                const z = 3;
-                
                 debugger;
-                //상위 스코프의 식별자를 참조하지 않는다.
-                console.log(z);
+                console.log(x);
             }
 
             return bar;
