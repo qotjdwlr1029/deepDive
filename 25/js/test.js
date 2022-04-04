@@ -321,4 +321,191 @@ class Person{
 }
 */
 
+/*
+//[예제 25-34]
+class Person {
+    constructor(name){
+        //인스턴스 프로퍼티
+        this.name = name;   // name 프로퍼티는 public하다.
+    }
+}
+
+const me = new Person('Lee');
+
+console.log(me.name);
+*/
+
+/*
+//[예제 25-35]
+const person = {
+    //데이터 프로퍼티
+    firstName : 'Ungmo',
+    lastName : 'Lee',
+
+    // fullName은 접근자 함수로 구성된 접근자 프로퍼티이다.
+    // getter 함수
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`;
+    },
+    // setter 함수
+    set fullName(name){
+        [this.firstName, this.lastName] = name.split(' ');
+    }
+}
+
+// 데이터 프로퍼티를 통한 프로퍼티의 참조
+console.log(`${person.firstName} ${person.lastName}`);
+
+// 접근자 프로퍼티를 통한 프로퍼티 값의 저장
+// 접근자 프로퍼티 fullName에 값을 저장하면 setter함수가 호출된다.
+person.fullName = 'Heegun Lee';
+console.log(person);
+
+// 접근자 프로퍼티를 통한 프로퍼티의 참조
+// 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
+console.log(person.fullName);
+
+// fullName은 접근자 프로퍼티이다.
+console.log(Object.getOwnPropertyDescriptor(person,'fullName'));
+*/
+
+/*
+//[예제 25-36]
+class Person {
+    constructor(firstName, lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`
+    }
+
+    set fullName(name){
+        [this.firstName, this.lastName] = name.split(' ');
+    }
+}
+
+const me = new Person('Ungmo', 'Lee');
+
+// 데이터 프로퍼티를 통한 프로퍼티 값의 참조
+consols.log(`${me.firstName} ${me.lastName}`);
+
+// 접근자 프로퍼티를 통한 프로퍼티 값의 저장
+// 접근자 프로퍼티 fullName에 값을 저장하면 setter 함수가 호출된다.
+me.fullName = 'Heegun Lee';
+console.log(me);
+
+// 접근자 프로퍼티를 통한 프로퍼티 값의 참조
+// 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
+console.log(me.fullName);
+*/
+
+/*
+//[예제 25-40]
+// javascript에서 클래스 필드 정의는 표준 사양으로 적용되지는 않았으나.
+// 최신 브라우저(Chrome72)와 최신 Node.js(버전 12 이상)에서 미리 구현을 하였다.
+class Person{
+    // 클래스 필드 정의
+    name = 'Lee';
+}
+
+
+const me = new Person();
+console.log(me.name);
+*/
+
+/*
+//[예제 25-41]
+class Person{
+    // this에 클래스 필드를 바인딩해서는 안 된다.
+    this.name = '';
+}
+*/
+
+
+/*
+//[예제 25-42]
+class Person {
+    //클래스 필드
+    name = 'Lee';
+
+    constructor(){
+        console.log(name);  //자바스크립트에서는 this를 사용해야 한다.
+    }
+}
+*/
+
+
+/*
+//[예제 25-43]
+class Person {
+    // 클래스 필드를 초기화 하지 않으면 undefined를 발생한다.
+    name;
+}
+
+const me = new Person();
+console.log(me.name);
+*/
+
+
+/*
+//[예제 25-54]
+class Animal {
+    constructor(age, weight){
+        this.age = age;
+        this.weight = weight;
+    }
+
+    eat() { return 'eat' };
+
+    move() { return 'move' };
+}
+
+class Bird extends Animal {
+    fly() { return 'fly' };
+}
+
+const bird  = new Bird(1, 5);
+
+console.log(bird);
+console.log(bird instanceof Bird);
+console.log(bird instanceof Animal);
+
+console.log(bird.eat());
+console.log(bird.move());
+console.log(bird.fly());
+*/
+
+/*
+//[예제 25-57]
+//extends 키워드는 클래스뿐만 아니라 생성자 함수를 상속받아 클래스를 확장할 수 있다.
+function Base(a){
+    this.a = a;
+}
+
+//생성자 함수를 상속받는 서브클래스
+class Derived extends Base {}
+
+const derived = new Derived(1);
+console.log(derived);   
+*/
+
+/*
+//[예제 25-58]
+// 동적으로 상속을 받을 수 있다.
+function Base1(){}
+
+class Base2 {}
+
+let condition = true;
+
+class Derived extends (condition ? Base1 : Base2){}
+
+const derived = new Derived();
+console.log(derived);
+
+console.log(derived instanceof Base1);
+console.log(derived instanceof Base2);
+*/
 
