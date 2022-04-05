@@ -509,3 +509,126 @@ console.log(derived instanceof Base1);
 console.log(derived instanceof Base2);
 */
 
+/*
+//[예제 25-61,62]
+// 클래스에서 constructor를 생략하면 클래스에 비어있는 constructor가 암묵적으로 정의된다.
+// 수퍼 클래스
+class Base {}
+
+// 서브클래스
+class Derived extends Base {}
+
+//위 예제의 클래스에는 다음과 같이 암묵적으로 constructor가 정의된다.
+// 수퍼 클래스
+class Base {
+    constructor() {}
+}
+
+// 서브 클래스
+class Derived extends Base{
+    constructor(...args){ super(...args) }
+}
+
+const derived = new Derived();
+console.log(derived);
+*/
+
+/* 
+    super 키워드 
+    super를 호출하면 수퍼클래스의 constructor를 호출한다.
+    super를 참조하면 수퍼클래스의 메서드를 호출할 수 있다.
+*/
+
+/*
+//[예제 25-63]
+// 수퍼글래스
+class Base {
+    constructor( a, b ){
+        this.a = a;
+        this.b = b;
+    }
+}
+
+class Derived extends Base {
+    // 다음과 같이 암묵적으로 constructor가 정의된다.
+    // constructor(...args) { super(...args) };
+}
+
+const derived = new Derived(1,2);
+console.log(derived);
+*/
+
+
+/*
+//[예제 25-64]
+// 수퍼 클래스
+class Base {
+    constructor(a,b){
+        this.a = a;
+        this.b = b;
+    }
+}
+
+// 서브 클래스
+class Derived extends Base {
+    constructor( a, b, c ){
+        super( a, b)
+        this.c = c;
+    }
+}
+
+const derived = new Derived(1,2,3);
+console.log(derived);
+*/
+
+/*
+//[예제 25-65]
+// 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시
+// super를 호출해야한다.
+
+class Base {}
+
+class Derived extends Base {
+    constructor(){
+        //Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+        console.log('constructor call');
+    }
+}
+
+const derived = new Derived();
+*/
+
+/*
+//[예제 25-66]
+// 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
+class Base {}
+
+class Derived extends Base {
+    constructor(){
+        // Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+        this.a = 1;
+        super();
+    }
+}
+
+const derived = new Derived(1);
+*/
+
+/*
+//[예제 25-67]
+// super는 반드시 서브클래스의 constructor에서만 호출한다.
+// 서브클래스가 아닌 클래스의 constructor나 함수에서 super를 호출하면 에러가 발생한다.
+
+class Base {
+    constructor(){
+        //super();    //'super' keyword unexpected here
+    }
+}
+
+function Foo(){
+    //super();    //'super' keyword unexpected here
+}
+*/
+
+
+
