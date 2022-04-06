@@ -630,5 +630,52 @@ function Foo(){
 }
 */
 
+/*
+//[예제 25-68]
+//super 참조
+// 메서드 내에서 super를 참조하면 수퍼클래스의 메서드를 호출할 수 있다.
+
+class Base {
+    constructor(name){
+        this.name = name;
+    }
+
+    sayHi () {
+        return `Hi! ${this.name}`;
+    }
+}
+
+// 서브클래스
+class Derived extends Base {
+    sayHi(){
+        return `${super.sayHi()}. how are you doing?`;
+    }
+}
+
+const derived = new Derived('Lee');
+console.log(derived.sayHi());
+*/
+
+/*
+//[예제 25-69]
+//수퍼클래스
+class Base{
+    constructor(name){
+        this.name = name;
+    }
+
+    sayHi(){
+        return `Hi! ${this.name}`;
+    }
+}
+
+class Derived extends Base {
+    sayHi(){
+        //__super는 Base.prototype을 가리킨다.
+        const __super = Object.getPrototypeOf(Derived.prototype);
+        return `${__super.sayHi()}`
+    }
+}
+*/
 
 
