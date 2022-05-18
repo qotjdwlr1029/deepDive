@@ -126,5 +126,203 @@ console.log(Array.from({length : 2, 0 : 'a', 1 : 'b'}));
 console.log(Array.from('hello'));
 */
 
+/*
+//[예제 27-41]
+const arr = [1];
+// push메서드는 원본 배열을 직접 변경한다.
+arr.push(2);
+console.log(arr);
+
+//concat 메서드는 원본 배열을 직접 변경하지 않고 새로운 배열을 생성하여 반환한다.
+const result = arr.concat(3);
+console.log(arr);
+console.log(result);
+*/
 
 
+/*
+//[예제 27-42]
+//isArray는 정적 메서드다. 인수가 배열이면 true, 배열이 아니면 false이다.
+
+//true
+console.log(Array.isArray([]));
+Array.isArray([1,2]);
+Array.isArray(new Array());
+
+//false
+Array.isArray();
+Array.isArray({});
+Array.isArray(null);
+Array.isArray(undefined);
+Array.isArray(1);
+Array.isArray('Array');
+Array.isArray(true);
+Array.isArray(false);
+*/
+
+/*
+//[예제 27-43]
+//indexOf 메서드는 인수로 전달된 요소를 검사하여 인덱스를 반환한다.
+const arr =[1,2,2,3];
+//첫 번째로 검색된 요소의 인덱스를 반환한다.
+console.log(arr.indexOf(1));
+//없는 값을 넣으면 -1을 반환한다.
+console.log(arr.indexOf(4));
+//두 번째 인수는 검색을 시작할 인덱스이다.
+console.log(arr.indexOf(2,2));
+*/
+
+
+/*
+//[예제 27-44]
+const foods = ['apple','banana','orange'];
+
+if(foods.indexOf('orange') === -1){
+    foods.push('orange');
+}
+
+console.log(foods);
+*/
+
+/*
+//[예제 27-45]
+const foods = ['apple','banana','orange'];
+
+if(!foods.includes('orange')){
+    foods.push('orange');
+}
+
+console.log(foods);
+*/
+
+/*
+//[예제 27-50]
+const Stack = (function(){
+    function Stack(array = []){
+        if(!Array.isArray(array)){
+            throw new TypeError(`${array} is not array`);
+        }
+        this.array = array;
+    }
+
+    Stack.prototype = {
+        constructor : Stack,
+        push(value){
+            return this.array.push(value);
+        },
+        pop(){
+            return this.array.pop();
+        },
+        entries(){
+            return [...this.array];
+        }
+    };
+
+    return Stack;
+}());
+
+const stack = new Stack([1,2]);
+console.log(stack.entries());
+
+stack.push(3);
+console.log(stack.entries());
+
+stack.push(3);
+console.log(stack.entries());
+
+stack.pop();
+console.log(stack.entries());
+*/
+
+/*
+//[예제 27-51]
+class Stack{
+    #array;
+
+    constructor(array = []){
+        if(!Array.isArray(array)){
+            throw new TypeError(`${array} is not array`);
+        }
+        this.#array = array;
+    }
+
+    push(value){
+        return this.#array.push(value);
+    }
+
+    pop(){
+        return this.#array.pop();
+    }
+
+    entries(){
+        return [...this.#array];
+    }
+}
+
+const stack = new Stack([1,2,3]);
+console.log(stack.entries());
+
+stack.push(4);
+console.log(stack.entries());
+
+stack.pop();
+console.log(stack.entries());
+*/
+
+/*
+//[예제 27-52]
+//unshift메서드는 인수로 넣은 값을 배열의 맨 앞부터 추가를 하고, 추가 후의 length프로퍼티를 반환한다.
+
+const arr = [1,2];
+
+let result = arr.unshift(3,4);
+console.log(result);
+
+console.log(arr);
+*/
+
+/*
+//[예제 27-54]
+//shift메서드는 원본 배열에서 첫 번째 요소를 제거하고 제거한 요소를 반환한다.
+const arr = [1,2];
+
+arr.shift();
+console.log(arr);
+*/
+
+/*
+//[예제 27-55]
+*/
+
+const Queue = (function(){
+    function Queue(array = []){
+        if(!Array.isArray(array)){
+            throw new TypeError(`${array} is not array`);
+        }
+        this.array = array;
+    }
+
+    Queue.prototype = {
+        constructor : Queue,
+        enqueue(value){
+            return this.array.push(value);
+        },
+        dequeue(){
+            return this.array.shift();
+        },
+        entries(){
+            return [...this.array];
+        }
+    }
+
+    return Queue;
+}())
+
+const queue = new Queue([1,2]);
+console.log(queue.entries());
+
+queue.enqueue(3);
+console.log(queue.entries());
+
+queue.dequeue();
+console.log(queue.entries());
