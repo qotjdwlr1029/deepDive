@@ -292,8 +292,6 @@ console.log(arr);
 
 /*
 //[예제 27-55]
-*/
-
 const Queue = (function(){
     function Queue(array = []){
         if(!Array.isArray(array)){
@@ -326,3 +324,172 @@ console.log(queue.entries());
 
 queue.dequeue();
 console.log(queue.entries());
+*/
+
+/*
+//[예제 27-57]
+//concat메서드는 원본 배열이 변경되지 않는다.
+const arr1 = [1,2];
+const arr2 = [3,4];
+
+let result = arr1.concat(arr2);
+console.log(result);
+
+result = arr1.concat(3);
+console.log(result);
+
+result = arr1.concat(arr2, 5);
+console.log(result);
+
+console.log(arr1);
+*/
+
+/*
+//[예제 27-58]
+const arr1 = [3,4];
+
+arr1.unshift(1,2);
+console.log(arr1);
+
+arr1.push(5,6);
+console.log(arr1);
+
+const arr2 = [3,4];
+
+let result = [1,2].concat(arr2);
+console.log(result);
+
+result = result.concat(5,6);
+console.log(result);
+*/
+
+/*
+//[예제 27-59]
+const arr = [3,4];
+
+arr.unshift([1,2]);
+arr.push([5,6]);
+console.log(arr);
+
+let result = [1,2].concat([3,4]);
+result = result.concat([5,6]);
+console.log(result);
+*/
+
+/*
+//[예제 27-61]
+const arr = [1,2,3,4];
+
+const result = arr.splice(1,2,20,30);
+
+console.log(result);
+
+console.log(arr);
+*/
+
+
+/*
+//[예제 27-75]
+const arr = [1,2,3,4];
+
+console.log(arr.join());
+console.log(arr.join(''));
+console.log(arr.join(':'));
+*/
+
+/*
+//[예제 27-76]
+const arr = [1,2,3];
+const result = arr.reverse();
+
+console.log(arr);
+console.log(result);
+*/
+
+/*
+//[예제 27-77]
+const arr = [1,2,3];
+
+console.log(arr.fill(0)); //[0,0,0];
+*/
+
+/*
+//[예제 27-78]
+const arr = [1,2,3];
+
+arr.fill(0,1);
+
+console.log(arr);
+*/
+
+/*
+//[예제 27-79]
+const arr = [1,2,3,4,5];
+
+arr.fill(0,1,3);
+
+console.log(arr);   //[ 1, 0, 0, 4, 5 ]
+*/
+
+/*
+//[예제 27-80]
+const arr = new Array(3);
+console.log(arr);
+
+const result = arr.fill(1);
+console.log(arr);
+console.log(result);
+*/
+
+/*
+//[예제 27-81]
+const sequences = (length = 0) => Array.from({length},(_,i) => i);
+console.log(sequences(3));
+*/
+
+
+/*
+//[예제 27-87]
+const fruits = ['Banana','Apple','Orange'];
+
+fruits.sort();
+
+console.log(fruits);
+*/
+
+/*
+//[예제 27-87]
+const fruits = ['바나나','오렌지','사과'];
+
+fruits.sort();
+
+console.log(fruits);
+*/
+
+/*
+//[예제 27-90]
+const points = [40, 100, 1, 5, 2, 25, 10];
+
+//sort 메서드의 기본 정렬 순서는 유니코드 코드 포인트의 순서를 따른다.
+points.sort();
+
+console.log(points);    //[ 1, 10, 100, 2, 25, 40, 5]
+*/
+
+/*
+//[예제 27-93]
+*/
+
+const points = [40, 100, 1, 5, 2, 25, 10];
+
+//숫자 배열의 오름차순 정렬. 비교 함수의 반환값이 0보다 작으면 a를 우선하여 정렬한다.
+points.sort((a,b) => a - b);
+console.log(points);//[1,  2,   5, 10, 25, 40, 100]
+
+console.log(points[0], points[points.length-1]);
+
+//숫자 배열의 내림차순 정렬. 비교 함수의 반환값이 0보다 작으면 b를 우선하여 정렬한다.
+points.sort((a,b) => b - a);
+console.log(points);
+
+console.log(points[points.length-1], points[0]);
