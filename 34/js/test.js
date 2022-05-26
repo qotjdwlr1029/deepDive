@@ -89,6 +89,172 @@ for( ;; ){
 }
 */
 
+/*
+//[예제34-09]
+//유사배열객체
+const arrayLike = {
+    0: 1,
+    1: 2,
+    2: 3,
+    length : 3
+};
+
+// 유사 배열 객체는 length 프로퍼티를 가지고 있기 때문에 for문으로 순회가 가능하다.
+for(let i = 0 ; i < arrayLike.length;i++){
+    // 유사 배열 객체는 마치 배열처럼 인덱스로 프로퍼티 값에 접근할 수 있다.
+    console.log(arrayLike[i]);
+}
+*/
+
+/*
+//[예제 34-10]
+const arrayLike = {
+    0: 1,
+    1: 2,
+    2: 3,
+    length : 3
+};
+
+
+for(const item of arrayLike){
+    console.log(item);      //arrayLike is not iterable
+}
+*/
+
+/*
+//[예제 34-12]
+
+const fibonacci = {
+    //Symbol.iterator 메서드를 구현하여 이터러블 프로토콜을 준수한다.
+    [Symbol.iterator](){
+
+        let [pre, cur] = [0, 1];
+        const max = 10;
+
+        //Symbol.iterator 메서드는 next메서드를 소유한 이터레이터를 반환해야하고
+        //next 메서드는 이터레이터 리절트 객체를 반환해야한다.
+        return{
+            next(){
+                [pre, cur] = [cur, pre + cur];
+                // 이터레이터 리절트 객체를 반환한다.
+                return {value : cur, done : cur >= max};
+            }
+        }
+    }
+}
+
+for(const sum of fibonacci){
+    console.log(sum);
+}
+*/
+
+/*
+//[예제 34-13]
+// 이터러블은 스프레드 문법의 대상이 될 수 있다.
+const arr = [...fibonacci];
+console.log(arr);
+
+//이터러블은 배열 디스트럭쳐링 할당의 대상이 될 수 있다.
+const [first, second, ...rest] = fibonacci;
+console.log(first, second, rest);
+*/
+
+/*
+//[예제 34-14]
+const fibonacciFunc = function(max){
+    let [pre, cur] = [0, 1];
+
+    return{
+        [Symbol.iterator](){
+            return{
+                next(){
+                    [pre, cur] = [cur, pre+cur];
+                    return { value : cur, done : cur >= max };
+                }            
+            }
+        }
+    }
+}
+
+for( const num of fibonacciFunc(10) ){
+    console.log(num);
+}
+*/
+
+
+/*
+//[예제 34-15]
+
+//fibonacciFunc 함수는 이터러블을 반환한다.
+const iterable = fibonacciFunc(5);
+// 이터러블의 Symbol.iterator 메서드는 이터레이터를 반환한다.
+const iterator = iterable[Symbol.iterator]();
+
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+*/
+
+/*
+//[예제 34-16]
+// 이터러블이면서 이터레이터인 객체
+// 이터레이터를 반환하는 Symbol.iterator 메서드와 이터레이션 리절트 객체를 반환하는 next 메서드를 소유한다.
+{
+    [Symbol.iterator](){return this;},
+    next(){
+        return{ value : any , done : boolean}
+    }
+}
+*/
+
+/*
+//[예제 34-17]
+const fibonacciFunc = function(max){
+    let [pre, cur] = [0, 1];
+
+    // Symbol.iterator 메서드와 next메서드를 소유한 이터러블이면서 이터레이터인 객체를 반환
+    return{
+        [Symbol.iterator](){return this},
+        //next는 이터레이터 리절트 객체를 반환
+        next(){
+            [pre , cur] = [cur , pre + cur]
+            return { value : cur , done : cur >= max}
+        }
+    }
+}
+
+//iter는 이터러블이면서 이터레이터이다.
+let iter = fibonacciFunc(10);
+
+//iter는 이터러블이므로 for...of문으로 순회할 수 있다.
+for(const num of iter){
+    console.log(num);
+}
+
+//iter는 이터러블이면서 이터레이터이다.
+iter = fibonacciFunc(10);
+
+//iter는 이터레이터 이므로 이터레이터 리절트 객체를 반환하는 next 메서드를 소유한다.
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.next());
+*/
+
+
+
+
+
+
+
+
+
 
 
 
