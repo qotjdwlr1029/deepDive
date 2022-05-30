@@ -36,7 +36,51 @@ const {size} = new Set([1, 2, 3, 3]);
 console.log(size);
 */
 
+/*
+//[예제 37-05]
+//size 프로퍼티는 setter 함수 없이 getter 함수만 존재하는 접근자 프로퍼티이다.
+const set = new Set([1,2,3]);
+console.log(Object.getOwnPropertyDescriptor(Set.prototype,'size'));
+
+set.size = 10;  //무시된다.
+console.log(set.size);
+*/
+
+/*
+//[예제 37-06]
+const set = new Set();
+console.log(set);   //Set(0) {}
+
+set.add(1);
+console.log(set);   //Set(1) { 1 }
+*/
+
+/*
+//[예제 37-07]
+const set = new Set();
+
+set.add(1).add(2);
+console.log(set);
+*/
+
+/*
+//[예제 37-08]
+const set = new Set();
+
+set.add(1).add(2).add(2);
+console.log(set);
+*/
 
 
+/*
+//[예제 37-09]
+// === 을 사용하면 NaN과 NaN을 동일하게 평가하지 않는다.
+// 하지만 Set객체는 NaN과 NaN을 동일하게 평가하여 중복 추가를 허용하지 않는다.
+const set = new Set();
 
+console.log(NaN === NaN);
+console.log(0 === -0);
 
+set.add(NaN).add(NaN);
+console.log(set);
+*/

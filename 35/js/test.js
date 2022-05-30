@@ -111,52 +111,7 @@ var copy = origin.slice();
 console.log(copy);
 console.log(origin === copy);
 
-// ES6
-var origin = [1, 2];
-var copy = [...origin];
-
-console.log(copy);
-console.log(origin === copy);
+//ES6
+var origin1 = [1, 2];
+var copy1 = origin1.slice()
 */
-
-/*
-//[예제 35-16]
-//이터러블인 arguments를 배열로 바꾸어 입력값의 총합을 구한다.
-function sum(){
-
-    var args = Array.prototype.slice.apply(arguments);
-
-    return args.reduce(function(pre, cur){
-        return pre + cur;
-    },0);
-}
-
-console.log(sum(1,2,3));
-*/
-
-/*
-//[예제 35-17]
-// 이터러블이 아닌 유사 객체
-const arrayLike = {
-    0 : 1,
-    1 : 2,
-    2 : 3,
-    length : 3
-};
-
-const arr = Array.prototype.slice.call(arrayLike);
-console.log(Array.isArray(arr));
-*/
-
-/*
-//[예제 35-18]
-function sum(){
-    return [...arguments].reduce(function(pre, cur){
-        return pre + cur
-    },0)
-}
-
-console.log(sum(1,2,3))
-*/
-
-
