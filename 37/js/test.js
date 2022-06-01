@@ -84,3 +84,216 @@ console.log(0 === -0);
 set.add(NaN).add(NaN);
 console.log(set);
 */
+
+/*
+//[예제 37-11]
+const set = new Set([1,2,3]);
+
+console.log(set.has(2));
+console.log(set.has(4));
+*/
+
+/*
+//[예제 37-12]
+const set = new Set([1,2,3]);
+
+set.delete(2);
+console.log(set);
+
+set.delete(1);
+console.log(set);
+*/
+
+/*
+//[예제 37-13]
+const set = new Set([1, 2, 3]);
+
+set.delete(0);      //없는 요소를 삭제하면 무시된다.
+console.log(set);
+*/
+
+/*
+//[예제 37-14]
+const set = new Set([1, 2, 3]);
+
+//delete는 불리언 값을 반환한다.
+set.delete(1).delete(2);    //set.delete(...).delete is not a function
+*/
+
+/*
+//[예제 37-15]
+const set = new Set([1, 2, 3]);
+
+set.clear();
+console.log(set);   //Set(0) {}
+*/
+
+/*
+//[예제 37-16]
+//Set.prototype.forEach는 다음과 같이 3개의 인수를 전달받는다.
+//첫번째 인수 : 현재 순회 중인 요소값
+//두번째 인수 : 현재 순회 중인 요소값
+//세번째 인수 : 현재 순회 중인 set 객체 자체
+const set = new Set([1, 2, 3]);
+
+set.forEach((v1, v2, set) => console.log(v1, v2, set));
+//1 1 Set(3) { 1, 2, 3 }
+//2 2 Set(3) { 1, 2, 3 }
+//3 3 Set(3) { 1, 2, 3 }
+*/
+
+/*
+//[예제 37-17]
+//Set객체는 이터러블이라서 for ... of문을 사용할 수 있다.
+const set = new Set([1, 2, 3]);
+
+// Set 객체는 Set.prototype의 Symbol.iterator를 상속 받는 이터러블이다.
+console.log(Symbol.iterator in set);    //true
+
+// Set 객체는 이터러블이므로 for ... of를 사용할 수 있다.
+for(const value of set){
+    console.log(value);
+}
+
+// Set 객체는 이터러블이므로 스프레드 문법을 사용할 수 있다.
+console.log(...set);
+*/
+
+/*
+//[예제 37-18]
+Set.prototype.intersection = function(set){
+    const result = new Set();
+
+    for(const value of set){
+        // 2개의 set요소가 공통되는 요소이면 교집합의 대상이다.
+        // this는 생성하게 될 Set객체이다.
+        if(this.has(value))result.add(value);
+    }
+
+    return result;
+}
+
+const setA = new Set([1,2,3,4]);
+const setB = new Set([2,4]);
+
+console.log(setB.intersection(setA));
+console.log(setA.intersection(setB));
+*/
+
+/*
+//[예제 37-19]
+Set.prototype.intersection = function(set){
+    return new Set([...set].filter(v => this.has(v)));
+}
+
+const setA = new Set([1,2,3,4]);
+const setB = new Set([2,4]);
+
+console.log(setB.intersection(setA));
+console.log(setA.intersection(setB));
+*/
+
+/*
+//[예제 37-20]
+Set.prototype.union = function(set){
+    // this(Set 객체)를 복사
+    const result = new Set(this);
+
+    for(const value of set){
+        result.add(value);
+    }
+
+    return result;
+};
+
+const setA = new Set([1, 2, 3]);
+const setB = new Set([2, 4]);
+
+console.log(setA.union(setB));
+console.log(setB.union(setA));
+*/
+
+/*
+//[예제 37-21]
+Set.prototype.union = function(set){
+    console.log([...set]);
+    console.log([...this]);
+    console.log([...set, ...this]);
+    return new Set([...set, ...this]);
+}
+
+const setA = new Set([1, 2, 3]);
+const setB = new Set([2, 4]);
+
+console.log(setA.union(setB));
+console.log(setB.union(setA));
+*/
+
+/*
+//[예제 37-22]
+Set.prototype.difference = function(set){
+
+    const result = new Set(this);
+
+    for(const value of set){
+
+        result.delete(value);
+
+    }
+
+    return result;
+
+}
+
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 4]);
+
+console.log(setA.difference(setB));
+console.log(setB.difference(setA));
+*/
+
+/*
+//[예제 37-23]
+Set.prototype.difference = function(set){
+    return new Set([...this].filter(v => !set.has(v)));
+}
+
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 4]);
+
+console.log(setA.difference(setB));
+console.log(setB.difference(setA));
+*/
+
+
+/*
+//[예제 37-24]
+Set.prototype.isSuperset = function(subset){
+
+    for(const value of subset){
+        if(!this.has(value)) return false;
+    }
+
+    return true;
+};
+
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 4]);
+
+console.log(setA.isSuperset(setB));
+console.log(setB.isSuperset(setA));
+*/
+
+/*
+//[예제 37-25]
+Set.prototype.isSuperset = function(subset){
+    const supersetArr = [...this];
+    return [...subset].every(v => supersetArr.includes(v));
+}
+
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 4]);
+
+console.log(setA.isSuperset(setB));
+console.log(setB.isSuperset(setA));
+*/
