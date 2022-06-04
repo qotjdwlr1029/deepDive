@@ -297,3 +297,197 @@ const setB = new Set([2, 4]);
 console.log(setA.isSuperset(setB));
 console.log(setB.isSuperset(setA));
 */
+
+/*
+//[예제 37-26]
+const map = new Map();
+console.log(map);   //Map(0) {}
+*/
+
+/*
+//[예제 37-27]
+//Map 생성자 함수는 이터러블을 인수로 전달받아 Map 객체를 생성한다.
+//이때 인수로 전달되는 이터러블은 키와 값의 쌍으로 이루어진 요소로 구성되어야 한다.
+const map1 = new Map([['key1','value1'],['key2','value2']]);
+console.log(map1);  //Map(2) { 'key1' => 'value1', 'key2' => 'value2' }
+
+const map2 = new Map([1,2]) //Iterator value 1 is not an entry object
+*/
+
+/*
+//[예제 37-28]
+const map1 = new Map([['key1','value1'],['key1','value2']]);
+console.log(map1);  //Map(1) { 'key1' => 'value2' }
+*/
+
+/*
+//[예제 37-29]
+//Map.prototype.size의 값을 사용한다.
+const { size } = new Map([['key1','value1'],['key2','value2']]);
+console.log(size);
+*/
+
+/*
+//[예제 37-30]
+const map = new Map([['key1','value1'],['key2','value2']]);
+
+console.log(Object.getOwnPropertyDescriptor(Map.prototype,'size'));
+
+map.size = 10;  //무시된다.
+console.log(map.size);
+*/
+
+/*
+//[예제 37-31]
+//map에 요소를 추가할 때는 Map.prototype.set을 사용한다.
+const map = new Map();
+console.log(map);
+
+map.set('key1','value1');
+console.log(map);
+*/
+
+/*
+//[예제 37-32]
+//set 메서드는 새로운 요소가 추가된 Map객체를 반환한다.
+const map = new Map();
+
+map
+    .set('key1','value1')
+    .set('key2','value2')
+
+console.log(map);
+*/
+
+/*
+//[예제 37-34]
+const map = new Map();
+
+console.log(NaN === NaN);
+console.log(+0 === -0);
+
+map.set(NaN, 'value1').set(NaN, 'value2');
+map.set(+0, 'value1').set(-0, 'value2');
+
+console.log(map);
+*/
+
+/*
+//[예제 37-35]
+//키가 되는 데이터의 자료형에 제한은 없다.
+const map = new Map();
+
+const lee = { name : 'Lee' };
+const kim = { name : 'Kim' };
+
+map
+    .set(lee, 'developer')
+    .set(kim, 'designer');
+
+console.log(map);
+*/
+
+/*
+//[예제 37-36]
+//특정 요소를 취득하려면 Map.prototype.get메서드를 사용한다.
+const map = new Map();
+
+const lee = { name : 'Lee' };
+const kim = { name : 'Kim' };
+
+map
+    .set(lee, 'developer')
+    .set(kim, 'designer');
+
+console.log(map.get(lee));      //developer
+console.log(map.get('key'));    //undefined
+*/
+
+/*
+//[예제 37-37]
+// Map.prototype.has 메서드를 사용한다. 특정 요소의 존재 여부를 나타내는 불리언 값을 반환한다.
+const lee = { name : 'Lee' };
+const kim = { name : 'Kim' };
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+console.log(map.has(lee));
+console.log(map.has('key'));
+*/
+
+/*
+//[예제 37-38]
+//Map의 요소를 삭제하려면 Map.prototype.delete 메서드를 사용한다.
+const lee = { name : 'Lee' };
+const kim = { name : 'Kim' };
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+map.delete(lee);
+console.log(map);
+*/
+
+/*
+//[예제 37-41]
+//Map의 요소를 일괄로 삭제하려면 Map.prototype.clear메서드를 사용한다.
+const lee = { name : 'Lee' }
+const kim = { name : 'Kim' }
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+map.clear();
+console.log(map);
+*/
+
+/*
+//[예제 37-42]
+const lee = { name : 'Lee' }
+const kim = { name : 'Kim' }
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+map.forEach((k, v, map) => console.log(k, v, map));
+
+//developer { name: 'Lee' } Map(2) {
+//    { name: 'Lee' } => 'developer',
+//    { name: 'Kim' } => 'designer'
+//  }
+//  designer { name: 'Kim' } Map(2) {
+//   { name: 'Lee' } => 'developer',
+//    { name: 'Kim' } => 'designer'
+//  }
+*/
+
+/*
+//[예제 37-43]
+const lee = { name : 'Lee' }
+const kim = { name : 'Kim' }
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+console.log(Symbol.iterator in map);
+
+for(const entry of map){
+    console.log(entry);
+}
+*/
+
+/*
+//[예제 37-44]
+const lee = { name : 'Lee' }
+const kim = { name : 'Kim' }
+
+const map = new Map([[lee,'developer'],[kim,'designer']]);
+
+for(const value of map.keys()){
+    console.log(value);
+}
+
+for(const value of map.values()){
+    console.log(value);
+}
+
+for(const value of map.entries()){
+    console.log(value);
+}
+*/
